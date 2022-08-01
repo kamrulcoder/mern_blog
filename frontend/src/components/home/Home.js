@@ -61,12 +61,32 @@ const Home = ({ history }) => {
                                     <div className="title">
                                         <h3>Category</h3>
                                     </div>
+                                    <ul className="cate-list">
+                                       
+                                    <div className="cate-item">
+
+<li><FaChevronRight /><Link to={`/artical/category/}`}>Programming </Link></li>
+<span>(10)</span>
+</div>
+                                                <div className="cate-item">
+
+                                                    <li><FaChevronRight /><Link to={`/artical/category/}`}>Digital Marketing  </Link></li>
+                                                    <span>(4)</span>
+                                                </div>
+                                    </ul>
                                     
                                 </div>
                                 <div className="tag">
                                     <div className="title">
                                         <h3>Tag</h3>
                                     </div>
+                                    <ul>
+                                        <li ><Link to={`/artical/tag/`}>Programming </Link></li>
+                                        <li ><Link to={`/artical/tag/`}>Marketing  </Link></li>
+                                        <li ><Link to={`/artical/tag/`}>Search Engine   </Link></li>
+                                        <li ><Link to={`/artical/tag/`}>Graphics Design   </Link></li>
+                                            
+                                    </ul>
                                    
                                 </div>
                             </div>
