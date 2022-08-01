@@ -3,6 +3,7 @@ import { FaArrowUp, FaChevronRight } from 'react-icons/fa';
 import Navbar from './Navbar';
 import { Link, Switch, Route } from "react-router-dom";
 import PopularArtical from './PopularArtical';
+import HomeArtical from './HomeArtical';
 
 const Home = ({ history }) => {
   const nav = useRef();
@@ -20,7 +21,7 @@ const Home = ({ history }) => {
                 <div className="container">
                     <div className="row">
                         <div className="col-8">
-                          <h1>Home Page </h1>
+                          
                             <Switch>
                                 <Route path='/'  exact />
                                 <Route path='/article/:currentPage?' exact />
@@ -29,6 +30,7 @@ const Home = ({ history }) => {
                                 <Route path='/artical/tag/:tagSlug/:currentPage?' exact />
                                 <Route path='/artical/search/:searchValue'  exact />
                             </Switch>
+                            <HomeArtical/>
                         </div>
                         <div className="col-4">
                             <div className="search-category-tag">
