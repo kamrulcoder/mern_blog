@@ -9,7 +9,15 @@ import CategoryArtical from "./CategoryArtical";
 import TagArtical from "./TagArtical";
 
 const Home = ({ history }) => {
+  const [value, setvalue] = useState('');
   const nav = useRef();
+
+
+  const search = (e) => {
+    e.preventDefault();
+    history.push(`/artical/search/${value}`);
+}
+
 
   const scrollTop = () => {
     nav.current?.scrollIntoView({ behavior: "smooth" });
@@ -56,14 +64,14 @@ const Home = ({ history }) => {
                 <div className="search">
                   <h2>Search</h2>
                   <div className="form-group">
-                    <input
+                    <input onChange={(e) => setvalue(e.target.value)}
                       className="form-control"
                       type="text"
                       placeholder="search"
                     />
                   </div>
                   <div className="form-group">
-                    <button className="btn btn-block">Search</button>
+                    <button onClick={search} className="btn btn-block">Search</button>
                   </div>
                 </div>
                 <div className="popular-artical">
