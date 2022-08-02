@@ -4,6 +4,9 @@ import Navbar from './Navbar';
 import { Link, Switch, Route } from "react-router-dom";
 import PopularArtical from './PopularArtical';
 import HomeArtical from './HomeArtical';
+import ArticalDetails from './ArticalDetails';
+import CategoryArtical from './CategoryArtical';
+import TagArtical from './TagArtical';
 
 const Home = ({ history }) => {
   const nav = useRef();
@@ -21,16 +24,16 @@ const Home = ({ history }) => {
                 <div className="container">
                     <div className="row">
                         <div className="col-8">
-                          
-                            <Switch>
-                                <Route path='/'  exact />
-                                <Route path='/article/:currentPage?' exact />
-                                <Route path='/artical/details/:slug'  exact />
-                                <Route path='/artical/category/:categorySlug/:currentPage?' exact />
-                                <Route path='/artical/tag/:tagSlug/:currentPage?' exact />
-                                <Route path='/artical/search/:searchValue'  exact />
+
+             
+                        <Switch>
+                                <Route path='/' component={HomeArtical}  />
+                                <Route path='/article/:currentPage?' component={HomeArtical} exact />
+                                <Route path='/artical/details/:slug' component={ArticalDetails} exact />
+                                <Route path='/artical/category/:categorySlug/:currentPage?' component={CategoryArtical} exact />
+                                <Route path='/artical/tag/:tagSlug/:currentPage?' component={TagArtical} exact />
+                                <Route path='/artical/search/:searchValue' component={HomeArtical} exact />
                             </Switch>
-                            <HomeArtical/>
                         </div>
                         <div className="col-4">
                             <div className="search-category-tag">
