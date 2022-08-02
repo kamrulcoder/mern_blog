@@ -12,7 +12,6 @@ function App() {
         <Route path='/artical/category/:categorySlug/:currentPage?' component={Home} exact />
         <Route path='/artical/tag/:tagSlug/:currentPage?' component={Home} exact />
         <Route path='/artical/search/:searchValue' component={Home} exact />
-
       </Switch>
     </Router>
     </>
