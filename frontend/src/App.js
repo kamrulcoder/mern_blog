@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Register from "./components/auth/Register";
 import ArticalDetails from "./components/home/ArticalDetails";
 import Home from "./components/home/Home"
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
    <Router>
       <Switch>
+      <Route path='/register' component={Register} exact />
         <Route path='/' component={Home}exact  />
         <Route path='/article/:currentPage?' component={Home} exact />
         <Route path='/artical/details/:slug' component={Home} exact />
