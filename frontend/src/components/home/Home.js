@@ -8,6 +8,7 @@ import ArticalDetails from "./ArticalDetails";
 import CategoryArtical from "./CategoryArtical";
 import TagArtical from "./TagArtical";
 import Footer from "./Footer";
+import CreateAt from "./CreateAt";
 
 const Home = ({ history }) => {
   const [value, setvalue] = useState('');
@@ -151,6 +152,7 @@ const Home = ({ history }) => {
       </div>
 
       <Footer />
+      <CreateAt />
 
       <div onClick={scrollTop} id="scroll">
         <button className="scroll-btn">

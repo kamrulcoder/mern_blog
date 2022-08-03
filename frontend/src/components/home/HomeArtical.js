@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import Pagination from "./Pagination";
 
 const HomeArtical = () => {
   return (
@@ -93,6 +94,7 @@ const HomeArtical = () => {
           </div>
         </div>
       </div>
+      <Pagination/>
     </>
   );
 };
