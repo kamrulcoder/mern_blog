@@ -2,6 +2,7 @@ import React from 'react';
 import { BsBell, BsListUl } from "react-icons/bs";
 import { FaTrash } from 'react-icons/fa';
 import { Link } from "react-router-dom";
+import UserMessage from './UserMessage';
 
 const DashboradNavbar = () => {
     return (
@@ -49,6 +50,7 @@ const DashboradNavbar = () => {
                                 </ul>
                             </div>
                         </div>
+                        <UserMessage/>
                     </div>
                     <label htmlFor="adminInfo"><img src="http://localhost:3000/designImage/image4.jpg" alt="" /></label>
                     <div className="name-time">
