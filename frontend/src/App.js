@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AdminLogin from "./components/auth/AdminLogin";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import Dashborad from "./components/dashboard/Dashborad";
 import ArticalDetails from "./components/home/ArticalDetails";
 import Home from "./components/home/Home";
 function App() {
@@ -12,6 +13,7 @@ function App() {
           <Route path="/register" component={Register} exact />
           <Route path="/login" component={Login} exact />
           <Route path='/admin/login' component={AdminLogin} exact />
+          <Route path="/dashborad" component={Dashborad} exact />
 
           <Route path="/" component={Home} exact />
           <Route path="/article/:currentPage?" component={Home} exact />
