@@ -2,6 +2,7 @@ import React from 'react';
 import { BsBell, BsListUl } from "react-icons/bs";
 import { FaTrash } from 'react-icons/fa';
 import { Link } from "react-router-dom";
+import AdminInfo from './AdminInfo';
 import UserMessage from './UserMessage';
 
 const DashboradNavbar = () => {
@@ -61,6 +62,8 @@ const DashboradNavbar = () => {
         
             </div>
         </div>
+        <AdminInfo/>
+
         </>
     )
 }
