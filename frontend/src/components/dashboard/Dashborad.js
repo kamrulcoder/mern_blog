@@ -6,6 +6,7 @@ import { Switch, Route } from "react-router-dom";
 import DashboradIndex from './DashboradIndex';
 import ArticleAdd from './ArticleAdd';
 import DashboradArticle from './DashboradArticle';
+import AddCategory from './AddCategory';
 
 const Dashborad = () => {
   return (
@@ -20,6 +21,7 @@ const Dashborad = () => {
           <Route path="/dashborad" component={DashboradIndex} exact />
           <Route path="/dashborad/article-add" component={ArticleAdd} exact />
           <Route path="/dashborad/all-article" component={DashboradArticle} exact />
+          <Route path="/dashborad/add-category" component={AddCategory} exact />
 
         </Switch>
       </div>
