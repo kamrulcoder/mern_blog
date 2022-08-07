@@ -39,6 +39,7 @@ function App() {
           <Route path="/dashborad/article-add" component={Dashborad} exact />
           <Route path="/dashborad/all-article" component={Dashborad} exact />
           <Route path="/dashborad/add-category" component={Dashborad} exact />
+          <Route path="/dashborad/all-category" component={Dashborad} exact />
 
           {/* ==================================
                        Dashboard Route end  
