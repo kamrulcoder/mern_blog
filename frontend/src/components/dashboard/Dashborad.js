@@ -4,6 +4,7 @@ import DashboradNavbar from './DashboradNavbar'
 import Sidebar from './Sidebar';
 import { Switch, Route } from "react-router-dom";
 import DashboradIndex from './DashboradIndex';
+import ArticleAdd from './ArticleAdd';
 
 const Dashborad = () => {
   return (
@@ -16,6 +17,7 @@ const Dashborad = () => {
         <Sidebar />
         <Switch>
           <Route path="/dashborad" component={DashboradIndex} exact />
+          <Route path="/dashborad/article-add" component={ArticleAdd} exact />
 
         </Switch>
       </div>

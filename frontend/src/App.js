@@ -12,9 +12,8 @@ function App() {
         <Switch>
           <Route path="/register" component={Register} exact />
           <Route path="/login" component={Login} exact />
-          <Route path='/admin/login' component={AdminLogin} exact />
-          <Route path="/dashborad" component={Dashborad} exact />
 
+        
           <Route path="/" component={Home} exact />
           <Route path="/article/:currentPage?" component={Home} exact />
           <Route path="/artical/details/:slug" component={Home} exact />
@@ -28,7 +27,27 @@ function App() {
             component={Home}
             exact
           />
-          <Route path="/artical/search/:searchValue" component={Home} exact />
+          <Route path="/artical/search/:searchValue" component={Home} exact />\
+
+
+           {/* ==================================
+                       Dashboard Route Start 
+           ================================= */}
+
+          <Route path='/admin/login' component={AdminLogin} exact />
+          <Route path="/dashborad" component={Dashborad} exact />
+          <Route path="/dashborad/article-add" component={Dashborad} exact />
+
+          {/* ==================================
+                       Dashboard Route end  
+           ================================= */}
+
+
+
+
+
+
+
         </Switch>
       </Router>
     </>
