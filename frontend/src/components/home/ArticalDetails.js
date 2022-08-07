@@ -5,6 +5,7 @@ import { BsChevronRight } from "react-icons/bs";
 import { AiFillTag, AiFillDislike, AiFillLike } from "react-icons/ai";
 import { FaFacebookSquare, FaTwitterSquare, FaGithubSquare } from "react-icons/fa";
 import { ImLinkedin } from "react-icons/im";
+import Comments from './Comments';
 
 const ArticalDetails = () => {
     
@@ -83,6 +84,7 @@ const ArticalDetails = () => {
             <div className="comment_title">
                 <h3>Article comments</h3>
             </div>
+            <Comments />
         </div>
     )
 };
