@@ -9,6 +9,7 @@ import DashboradArticle from './DashboradArticle';
 import AddCategory from './AddCategory';
 import AllCategory from './AllCategory';
 import AddTag from './AddTag';
+import AllTag from './AllTag';
 
 const Dashborad = () => {
   return (
@@ -26,6 +27,7 @@ const Dashborad = () => {
           <Route path="/dashborad/add-category" component={AddCategory} exact />
           <Route path="/dashborad/all-category" component={AllCategory} exact />
           <Route path="/dashborad/add-tag" component={AddTag} exact />
+          <Route path="/dashborad/all-tag" component={AllTag} exact />
 
         </Switch>
       </div>
