@@ -37,6 +37,7 @@ function App() {
           <Route path='/admin/login' component={AdminLogin} exact />
           <Route path="/dashborad" component={Dashborad} exact />
           <Route path="/dashborad/article-add" component={Dashborad} exact />
+          <Route path="/dashborad/all-article" component={Dashborad} exact />
 
           {/* ==================================
                        Dashboard Route end  
