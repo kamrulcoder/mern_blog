@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import DashboradNavbar from './DashboradNavbar'
 import Sidebar from './Sidebar';
 import { Switch, Route } from "react-router-dom";
+import DashboradIndex from './DashboradIndex';
 
 const Dashborad = () => {
   return (
@@ -13,6 +14,10 @@ const Dashborad = () => {
       <DashboradNavbar />
       <div className="dashborad-main-content">
         <Sidebar />
+        <Switch>
+          <Route path="/dashborad" component={DashboradIndex} exact />
+
+        </Switch>
       </div>
     </div>
   )
