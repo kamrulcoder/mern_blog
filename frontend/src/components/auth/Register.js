@@ -55,6 +55,13 @@ const Register = ({ history }) => {
                            <button className="btn btn-block">
                                     Register
                                 </button>
+                                <button className="btn btn-block">
+                                    <div className="spinner">
+                                        <div className="spinner1"></div>
+                                        <div className="spinner2"></div>
+                                        <div className="spinner3"></div>
+                                    </div>
+                                </button> 
                           
                         </div>
                         <div className="form-group">
