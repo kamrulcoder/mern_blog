@@ -5,17 +5,19 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { htmlToText } from "html-to-text";
 import { useParams } from "react-router-dom" ; 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { get_all_catagory } from '../../store/actions/Dashboard/categoryAction';
 const AllCategory = () => {
 
     const dispatch  = useDispatch();
-
     const  {currentPage}  = useParams();
+
+    const { parPage, allCategory, categoryCount } = useSelector(state => state.dashboradCategory);
+
 
     useEffect(() => { 
         dispatch(get_all_catagory(currentPage?currentPage.split('-')[1]:1)) 
-    })
+    },[])
 
     return (
         <div className='all-category'>
@@ -40,13 +42,15 @@ const AllCategory = () => {
                 </div>
                 <div className="height-60vh">
                     <div className="categorys">
-                        <div className="category">
-                                <div className="name">Catagrory name </div>
+                    {
+                            allCategory.length > 0 ? allCategory.map(c => <div className="category">
+                                <div className="name">{c.categoryName}</div>
                                 <div className="action">
                                     <span><Link to={`/dashborad/category/edit/`}><MdEdit /></Link></span>
                                     <span ><MdDelete /></span>
                                 </div>
-                            </div>
+                            </div>) : "category not found..."
+                        }
                     </div>
                 </div>
                 

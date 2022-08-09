@@ -24,7 +24,19 @@ export const add_category = (data)=>async(dispatch)=>{
 }
 
 export const get_all_catagory = (page , searchValue ) => async(dispatch)=> {
-    console.log(page)
-    const response = await axios.get(`/rest-api/get-catagory/${page}&&searchValue=${searchValue}`)
-    console.log(response)
+    try {
+        const response  = await axios.get(`http://localhost:5000/rest-api/get-category?page=${page}&&searchValue=${searchValue}`,{withCredentials:true});
+
+        console.log(response);
+        dispatch({
+            type : "DASHBORAD_CATEGORY_GET_SUCCESS",
+            payload : {
+                allCategory : response.data.allCategory,
+                parPage : response.data.parPage,
+                categoryCount : response.data.categoryCount
+            }
+        })
+    } catch (error) {
+        console.log(error.response)
+    }
 }

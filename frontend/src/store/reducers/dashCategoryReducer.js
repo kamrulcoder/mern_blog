@@ -26,14 +26,14 @@ export const dashCategoryReducer = (state=categoryState,action)=>{
             categoryError : ''
         }
     }
-    // if(type === 'DASHBORAD_CATEGORY_GET_SUCCESS'){
-    //     return {
-    //         ...state,
-    //         allCategory : payload.allCategory,
-    //         categoryCount : payload.categoryCount,
-    //         parPage : payload.parPage
-    //     }
-    // }
+    if(type === 'DASHBORAD_CATEGORY_GET_SUCCESS'){
+        return {
+            ...state,
+            allCategory : payload.allCategory,
+            categoryCount : payload.categoryCount,
+            parPage : payload.parPage
+        }
+    }
     // if(type === 'EDIT_CATEGORY_GET_SUCCESS'){
     //     return {
     //         ...state,

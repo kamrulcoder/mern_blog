@@ -41,3 +41,46 @@ module.exports.category_add = async (req, res) => {
         res.status(400).json({ errorMessage: error });
     }
 }
+
+
+
+module.exports.category_get = async (req, res) => {
+    const { page, searchValue } = req.query;
+
+    const parPage = 2;
+    const skipPage = parseInt(page - 1) * parPage;
+    if (searchValue === 'undefined' || !searchValue) {
+        try {
+            const categoryCount = await categoryModel.find({}).countDocuments();
+            const getCategory = await categoryModel.find({}).skip(skipPage).limit(parPage).sort({ cateatedAt: -1 });
+            res.status(200).json({
+                allCategory: getCategory,
+                parPage,
+                categoryCount
+            })
+        } catch (error) {
+            res.status(500).json({
+                errorMessage: {
+                    error: 'Internal server error'
+                }
+            })
+        }
+    } else {
+        try {
+            const categoryCount = await categoryModel.find({}).countDocuments();
+            let getCategory = await categoryModel.find({});
+            getCategory = getCategory.filter(c => c.categoryName.toUpperCase().indexOf(searchValue.toUpperCase()) > -1)
+            res.status(200).json({
+                allCategory: getCategory,
+                parPage,
+                categoryCount
+            })
+        } catch (error) {
+            res.status(500).json({
+                errorMessage: {
+                    error: 'Internal server error'
+                }
+            })
+        }
+    }
+}
