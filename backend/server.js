@@ -8,6 +8,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const dbConnect = require('./config/dbConnect');
 const authRouter = require('./routes/authRoutes');
+const dashboadRoute = require('./routes/Dashborad/dashboradRoutes');
+
 
 
 app.get('/',(req,res)=>{
@@ -29,6 +31,8 @@ app.use(cors({
 
 // route  declaire 
 app.use('/rest-api',authRouter);
+app.use('/rest-api',dashboadRoute);
+
 
 
 
