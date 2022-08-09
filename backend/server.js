@@ -6,6 +6,9 @@ const cors = require('cors');
 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const dbConnect = require('./config/dbConnect');
+const authRouter = require('./routes/authRoutes');
+
 
 app.get('/',(req,res)=>{
     res.send('server is running')
@@ -24,6 +27,14 @@ app.use(cors({
 }));
 
 
+// route  declaire 
+app.use('/rest-api',authRouter);
+
+
+
+
+// db connect........
+dbConnect();
 
 const PORT = process.env.PORT || 4000
 
