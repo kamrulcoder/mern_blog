@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { add_category } from '../../store/actions/Dashboard/categoryAction';
 
+
 const AddCategory = ({history}) => {
 
     const { loader, categoryError, categorySuccessMessage } = useSelector(state => state.dashboradCategory);

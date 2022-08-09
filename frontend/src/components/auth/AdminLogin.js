@@ -39,7 +39,6 @@ const AdminLogin = ({history}) => {
         }
     },[dispatch,successMessage])
 
-    console.log(successMessage)
 
 
     useEffect(() => {
@@ -50,7 +49,6 @@ const AdminLogin = ({history}) => {
     }, [errorMessage.error])
     
 
-    console.log(authenticate)
 
     return <>
         <Navbar />

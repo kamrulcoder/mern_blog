@@ -4,10 +4,18 @@ import { FaSearch } from "react-icons/fa";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { htmlToText } from "html-to-text";
-
+import { useParams } from "react-router-dom" ; 
+import { useDispatch } from 'react-redux';
+import { get_all_catagory } from '../../store/actions/Dashboard/categoryAction';
 const AllCategory = () => {
 
-    
+    const dispatch  = useDispatch();
+
+    const  {currentPage}  = useParams();
+
+    useEffect(() => { 
+        dispatch(get_all_catagory(currentPage?currentPage.split('-')[1]:1)) 
+    })
 
     return (
         <div className='all-category'>

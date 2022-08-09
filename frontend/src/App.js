@@ -5,6 +5,7 @@ import ProtectRoute from "./components/auth/ProtectRoute";
 import Register from "./components/auth/Register";
 import Dashborad from "./components/dashboard/Dashborad";
 import ArticalDetails from "./components/home/ArticalDetails";
+
 import Home from "./components/home/Home";
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
           <Route path="/dashborad/article-add" component={Dashborad} exact />
           <Route path="/dashborad/all-article" component={Dashborad} exact />
           <Route path="/dashborad/add-category" component={Dashborad} exact />
-          <Route path="/dashborad/all-category" component={Dashborad} exact />
+          <Route path="/dashborad/all-category/:currentPage?" component={Dashborad} exact />
           <Route path="/dashborad/add-tag" component={Dashborad} exact />
           <Route path="/dashborad/all-tag" component={Dashborad} exact />
           <Route path="/dashborad/all-user" component={Dashborad} exact />

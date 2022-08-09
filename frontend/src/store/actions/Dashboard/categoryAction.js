@@ -1,6 +1,7 @@
 
 
 import axios from 'axios';
+import { AiFillInsurance } from 'react-icons/ai';
 
 export const add_category = (data)=>async(dispatch)=>{
     dispatch({type : 'SET_LOADER'});
@@ -20,4 +21,10 @@ export const add_category = (data)=>async(dispatch)=>{
             }
         })
     }
+}
+
+export const get_all_catagory = (page , searchValue ) => async(dispatch)=> {
+    console.log(page)
+    const response = await axios.get(`/rest-api/get-catagory/${page}&&searchValue=${searchValue}`)
+    console.log(response)
 }
