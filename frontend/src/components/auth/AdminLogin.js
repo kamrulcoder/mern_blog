@@ -29,9 +29,13 @@ const AdminLogin = ({history}) => {
         dispatch(admin_login(state));
     }
     useEffect(()=>{
+
         if(successMessage){
            toast.success(successMessage);
            dispatch({type:"LOGIN_SUCCES_MESSAGE_CLEAR"})
+        }
+        if(authenticate) {
+            history.push('/dashborad');
         }
     },[dispatch,successMessage])
 
@@ -45,6 +49,8 @@ const AdminLogin = ({history}) => {
         dispatch({type : "LOGIN_ERROR_CLEAR"})
     }, [errorMessage.error])
     
+
+    console.log(authenticate)
 
     return <>
         <Navbar />

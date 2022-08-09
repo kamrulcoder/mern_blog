@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AdminLogin from "./components/auth/AdminLogin";
 import Login from "./components/auth/Login";
+import ProtectRoute from "./components/auth/ProtectRoute";
 import Register from "./components/auth/Register";
 import Dashborad from "./components/dashboard/Dashborad";
 import ArticalDetails from "./components/home/ArticalDetails";
@@ -35,7 +36,7 @@ function App() {
            ================================= */}
 
           <Route path='/admin/login' component={AdminLogin} exact />
-          <Route path="/dashborad" component={Dashborad} exact />
+          <ProtectRoute path="/dashborad" component={Dashborad} exact />
           <Route path="/dashborad/article-add" component={Dashborad} exact />
           <Route path="/dashborad/all-article" component={Dashborad} exact />
           <Route path="/dashborad/add-category" component={Dashborad} exact />
