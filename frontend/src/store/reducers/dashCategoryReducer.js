@@ -46,12 +46,12 @@ export const dashCategoryReducer = (state=categoryState,action)=>{
     //         editRequest :true,
     //     }
     // }
-    // if(type === 'CATE_SUCCESS_MESSAGE_CLEAR'){
-    //     return {
-    //         ...state,
-    //         categorySuccessMessage : '',
-    //     }
-    // }
+    if(type === 'CATE_SUCCESS_MESSAGE_CLEAR'){
+        return {
+            ...state,
+            categorySuccessMessage : '',
+        }
+    }
     // if(type === 'EDIT_REQUEST_CLEAR'){
     //     return {
     //         ...state,

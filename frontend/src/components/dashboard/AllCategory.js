@@ -6,24 +6,41 @@ import { Link } from "react-router-dom";
 import { htmlToText } from "html-to-text";
 import { useParams } from "react-router-dom" ; 
 import { useDispatch, useSelector } from "react-redux";
-import { get_all_catagory } from '../../store/actions/Dashboard/categoryAction';
+import toast, { Toaster } from "react-hot-toast";
+
+import { delete_category, get_all_catagory } from '../../store/actions/Dashboard/categoryAction';
 const AllCategory = () => {
 
     const dispatch  = useDispatch();
     const  {currentPage}  = useParams();
 
-    const { parPage, allCategory, categoryCount } = useSelector(state => state.dashboradCategory);
+    const { parPage, allCategory, categoryCount, categorySuccessMessage } = useSelector(state => state.dashboradCategory);
 
 
-    useEffect(() => { 
-        dispatch(get_all_catagory(currentPage?currentPage.split('-')[1]:1)) 
-    },[])
+    useEffect(() => {
+        if(categorySuccessMessage){
+            toast.success(categorySuccessMessage);
+            dispatch({type : 'CATE_SUCCESS_MESSAGE_CLEAR'});
+        }
+        dispatch(get_all_catagory(currentPage ? currentPage.split('-')[1] : 1));
+    }, [currentPage,categorySuccessMessage])
 
     return (
         <div className='all-category'>
             <Helmet>
                 <title>All Category</title>
             </Helmet>
+
+            <Toaster position={'bottom-center'}
+                reverseOrder={false}
+                toastOptions={
+                    {
+                        style: {
+                            fontSize: '15px'
+                        }
+                    }
+                }
+            />
             
             <div className="show-category-action">
                 <div className="numof-search-newAdd">
@@ -47,7 +64,7 @@ const AllCategory = () => {
                                 <div className="name">{c.categoryName}</div>
                                 <div className="action">
                                     <span><Link to={`/dashborad/category/edit/`}><MdEdit /></Link></span>
-                                    <span ><MdDelete /></span>
+                                    <span  onClick={()=>dispatch(delete_category(c._id))}><MdDelete /></span>
                                 </div>
                             </div>) : "category not found..."
                         }
