@@ -40,8 +40,15 @@ function App() {
           <ProtectRoute path="/dashborad" component={Dashborad} exact />
           <Route path="/dashborad/article-add" component={Dashborad} exact />
           <Route path="/dashborad/all-article" component={Dashborad} exact />
+
+           {/* Catagory Route start 
+            ============================= */}
           <Route path="/dashborad/add-category" component={Dashborad} exact />
           <Route path="/dashborad/all-category/:currentPage?" component={Dashborad} exact />
+          <Route path="/dashborad/category/edit/:cateSlug" component={Dashborad} exact />          
+           {/* Catagory Route end  
+            ============================= */}
+
           <Route path="/dashborad/add-tag" component={Dashborad} exact />
           <Route path="/dashborad/all-tag" component={Dashborad} exact />
           <Route path="/dashborad/all-user" component={Dashborad} exact />

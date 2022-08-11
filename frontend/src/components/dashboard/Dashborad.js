@@ -13,6 +13,7 @@ import AllTag from './AllTag';
 import AllUser from './AllUser';
 import AllSubAdmin from './AllSubAdmin';
 import DashComments from './DashComments';
+import EditCategory from './EditCategory';
 
 const Dashborad = () => {
   return (
@@ -27,8 +28,15 @@ const Dashborad = () => {
           <Route path="/dashborad" component={DashboradIndex} exact />
           <Route path="/dashborad/article-add" component={ArticleAdd} exact />
           <Route path="/dashborad/all-article" component={DashboradArticle} exact />
+
+          {/* Catagory Route start 
+            ============================= */}
           <Route path="/dashborad/add-category" component={AddCategory} exact />
           <Route path="/dashborad/all-category/:currentPage?" component={AllCategory} exact />
+          <Route path="/dashborad/category/edit/:cateSlug" component={EditCategory} exact />
+           {/* Catagory Route end  
+            ============================= */}
+
           <Route path="/dashborad/add-tag" component={AddTag} exact />
           <Route path="/dashborad/all-tag" component={AllTag} exact />
           <Route path="/dashborad/all-user" component={AllUser} exact />
