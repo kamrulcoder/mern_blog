@@ -11,7 +11,7 @@ module.exports.category_add = async (req, res) => {
         error.categoryDes = 'Please provide category description'
     }
     if (Object.keys(error).length == 0) {
-        const categorySlug = categoryName.trim().split(' ').join('-');
+        const categorySlug = categoryName.trim().split(' ').join('-').toLowerCase();
         try {
             const checkCategory = await categoryModel.findOne({ categorySlug });
             if (checkCategory) {
