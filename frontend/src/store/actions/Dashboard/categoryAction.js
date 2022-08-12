@@ -55,3 +55,41 @@ export const delete_category = (id)=> async(dispatch)=>{
         console.log(error.response)
     }
 }
+
+
+export const edit_category = (categorySlug)=>async(dispatch)=>{
+    try {
+        const response = await axios.get(`http://localhost:5000/rest-api/edit-category/${categorySlug}`,{withCredentials:true});
+        dispatch({
+            type : 'EDIT_CATEGORY_GET_SUCCESS',
+            payload : {
+                editCategory : response.data.editCategory
+            }
+        });
+        dispatch({
+            type : 'EDIT_REQUEST_SET'
+        })
+    } catch (error) {
+        console.log(error.response)
+    }
+}
+
+
+export const update_category = (id,data)=>async(dispatch)=>{
+    try {
+        const response = await axios.patch(`http://localhost:5000/rest-api/update-category/${id}`,data,{withCredentials:true});
+        dispatch({
+            type : 'CATEGORY_UPDATE_SUCCESS',
+            payload : {
+                successMessage : response.data.successMessage
+            }
+        })
+    } catch (error) {
+        dispatch({
+            type : 'CATEGORY_UPDATE_FAIL',
+            payload : {
+                error : error.response.data.errorMessage
+            }
+        })
+    }
+}

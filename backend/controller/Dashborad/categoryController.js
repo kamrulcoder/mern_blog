@@ -86,7 +86,6 @@ module.exports.category_get = async (req, res) => {
 }
 
 
-
 module.exports.category_delete = async (req, res) => {
     const categoryId = req.params.categoryId;
 
@@ -101,5 +100,64 @@ module.exports.category_delete = async (req, res) => {
                 error: 'Internal server error'
             }
         })
+    }
+}
+
+
+
+module.exports.category_edit = async (req, res) => {
+    const { categorySlug } = req.params;
+
+    try {
+        const editCategory = await categoryModel.findOne({ categorySlug });
+
+        res.status(200).json({
+            editCategory
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            errorMessage: {
+                error: 'Internal server error'
+            }
+        })
+    }
+}
+
+
+
+
+module.exports.category_update = async (req, res) => {
+
+    const { categoryId } = req.params;
+    const { categoryName, categoryDes } = req.body;
+    const error = {};
+
+    if (!categoryName) {
+        error.categoryName = 'Please provide category name';
+    }
+    if (!categoryDes) {
+        error.categoryDes = 'Please provide category description'
+    }
+    if (Object.keys(error).length == 0) {
+        const categorySlug = categoryName.trim().split(' ').join('-');
+        try {
+            await categoryModel.findByIdAndUpdate(categoryId, {
+                categoryName: categoryName.trim(),
+                categorySlug,
+                categoryDes
+            })
+            res.status(200).json({
+                successMessage: 'Category update successfull'
+            })
+        } catch (error) {
+            res.status(500).json({
+                errorMessage: {
+                    error: 'Internal server error'
+                }
+            })
+        }
+    } else {
+        res.status(400).json({ errorMessage: error });
     }
 }

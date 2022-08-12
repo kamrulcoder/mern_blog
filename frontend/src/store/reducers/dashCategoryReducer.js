@@ -34,36 +34,43 @@ export const dashCategoryReducer = (state=categoryState,action)=>{
             parPage : payload.parPage
         }
     }
-    // if(type === 'EDIT_CATEGORY_GET_SUCCESS'){
-    //     return {
-    //         ...state,
-    //         editCategory :payload.editCategory,
-    //     }
-    // }
-    // if(type === 'EDIT_REQUEST_SET'){
-    //     return {
-    //         ...state,
-    //         editRequest :true,
-    //     }
-    // }
+    if(type === 'EDIT_CATEGORY_GET_SUCCESS'){
+        return {
+            ...state,
+            editCategory :payload.editCategory,
+        }
+    }
+
+
+    if(type === 'EDIT_REQUEST_SET'){
+        return {
+            ...state,
+            editRequest :true,
+        }
+    }
+
+
     if(type === 'CATE_SUCCESS_MESSAGE_CLEAR'){
         return {
             ...state,
             categorySuccessMessage : '',
         }
     }
-    // if(type === 'EDIT_REQUEST_CLEAR'){
-    //     return {
-    //         ...state,
-    //         editRequest : false,
-    //     }
-    // }
-    // if(type === 'CATE_ERROR_MESSAGE_CLEAR'){
-    //     return {
-    //         ...state,
-    //         categoryError : '',
-    //     }
-    // }
+    if(type === 'EDIT_REQUEST_CLEAR'){
+        return {
+            ...state,
+            editRequest : false,
+        }
+    }
+
+    if(type === 'CATE_ERROR_MESSAGE_CLEAR'){
+        return {
+            ...state,
+            categoryError : '',
+        }
+    }
+
+
     if(type === 'CATEGORY_ADD_FAIL' || type === 'CATEGORY_UPDATE_FAIL'){
         return {
             ...state,

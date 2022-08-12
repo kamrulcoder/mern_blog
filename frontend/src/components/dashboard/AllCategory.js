@@ -7,6 +7,7 @@ import { htmlToText } from "html-to-text";
 import { useParams } from "react-router-dom" ; 
 import { useDispatch, useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
+import Pagination from "../home/Pagination"
 
 import { delete_category, get_all_catagory } from '../../store/actions/Dashboard/categoryAction';
 const AllCategory = () => {
@@ -24,6 +25,7 @@ const AllCategory = () => {
         }
         dispatch(get_all_catagory(currentPage ? currentPage.split('-')[1] : 1));
     }, [currentPage,categorySuccessMessage])
+
 
     return (
         <div className='all-category'>
@@ -60,17 +62,22 @@ const AllCategory = () => {
                 <div className="height-60vh">
                     <div className="categorys">
                     {
-                            allCategory.length > 0 ? allCategory.map(c => <div className="category">
+                            allCategory.length > 0 ? allCategory.map(c => <div className="category"   key={c.categorySlug}>
                                 <div className="name">{c.categoryName}</div>
                                 <div className="action">
-                                    <span><Link to={`/dashborad/category/edit/`}><MdEdit /></Link></span>
+                                    <span><Link to={`/dashborad/category/edit/${c.categorySlug}`}><MdEdit /></Link></span>
                                     <span  onClick={()=>dispatch(delete_category(c._id))}><MdDelete /></span>
                                 </div>
                             </div>) : "category not found..."
                         }
                     </div>
                 </div>
-                
+                <Pagination
+                pageNumber={currentPage ? currentPage.split("-")[1]:1}
+                parPage={parPage}
+                itemCount={categoryCount}
+                path="/dashborad/all-category"             
+                />
             </div>
         </div>
     )
