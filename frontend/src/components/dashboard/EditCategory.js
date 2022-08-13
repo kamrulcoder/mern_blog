@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import { Link,useParams} from 'react-router-dom';
 import { useDispatch,useSelector } from "react-redux";
 import { edit_category , update_category } from '../../store/actions/Dashboard/categoryAction';
+import toast, { Toaster } from "react-hot-toast";
 
 
 const EditCategory = ({history}) => {
@@ -34,7 +35,12 @@ const EditCategory = ({history}) => {
         if(categorySuccessMessage){
             history.push('/dashborad/all-category')
         }
-    },[categorySuccessMessage])
+
+        if(categoryError && categoryError.error){
+            toast.error(categoryError.error);
+            dispatch({type : 'CATE_ERROR_MESSAGE_CLEAR'});
+        }
+    },[categorySuccessMessage,categoryError])
 
     const inputHendle = (e)=>{
         setState({
@@ -47,8 +53,7 @@ const EditCategory = ({history}) => {
         e.preventDefault();
         dispatch(update_category(editCategory._id,state));
     }
-    
-    
+     
     
     
     return (
@@ -56,6 +61,16 @@ const EditCategory = ({history}) => {
             <Helmet>
                 <title>Category Edit</title>
             </Helmet>
+            <Toaster position={'bottom-center'}
+                reverseOrder={false}
+                toastOptions={
+                    {
+                        style: {
+                            fontSize: '15px'
+                        }
+                    }
+                }
+            />
             <div className="added">
                 <div className="title-show-article">
                     <h2>Edit Category</h2>

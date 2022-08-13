@@ -19,3 +19,22 @@ export const add_tag = (data)=>async(dispatch)=>{
         })
     }
 }
+
+
+
+export const get_all_tag = (page,searchValue) =>async(dispatch)=>{
+
+    try {
+        const response  = await axios.get(`/rest-api/get-tag?page=${page}&&searchValue=${searchValue}`,{withCredentials:true});
+        dispatch({
+            type : "DASHBORAD_TAG_GET_SUCCESS",
+            payload : {
+                allTag : response.data.allTag,
+                parPage : response.data.parPage,
+                tagCount : response.data.tagCount
+            }
+        })
+    } catch (error) {
+        console.log(error.response)
+    }
+}

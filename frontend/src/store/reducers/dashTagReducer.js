@@ -27,6 +27,15 @@ export const dashTagReducer = (state=tagState,action)=>{
         }
     }
 
+    if(type === 'DASHBORAD_TAG_GET_SUCCESS'){
+        return {
+            ...state,
+            allTag : payload.allTag,
+            tagCount : payload.tagCount,
+            parPage : payload.parPage
+        }
+    }
+
     if(type === 'TAG_SUCCESS_MESSAGE_CLEAR'){
         return {
             ...state,

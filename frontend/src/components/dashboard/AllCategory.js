@@ -47,11 +47,11 @@ const AllCategory = () => {
             <div className="show-category-action">
                 <div className="numof-search-newAdd">
                     <div className="numof">
-                        <h2>Category (22)</h2>
+                        <h2>Category ({categoryCount})</h2>
                     </div>
                     <div className="searchOf">
                         <div className="search">
-                            <input  type="text" placeholder='search article' className="form-control" />
+                            <input onChange={(e)=>dispatch(get_all_catagory(currentPage ? currentPage.split('-')[1] : 1,e.target.value))}  type="text" placeholder='search article' className="form-control" />
                         </div>
                         <span><FaSearch /></span>
                     </div>

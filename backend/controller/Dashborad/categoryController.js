@@ -11,7 +11,7 @@ module.exports.category_add = async (req, res) => {
         error.categoryDes = 'Please provide category description'
     }
     if (Object.keys(error).length == 0) {
-        const categorySlug = categoryName.trim().split(' ').join('-').toUpperCase();
+        const categorySlug = categoryName.trim().split(' ').join('-').toLowerCase();
         try {
             const checkCategory = await categoryModel.findOne({ categorySlug });
             if (checkCategory) {
@@ -125,8 +125,6 @@ module.exports.category_edit = async (req, res) => {
 }
 
 
-
-
 module.exports.category_update = async (req, res) => {
 
     const { categoryId } = req.params;
@@ -140,8 +138,17 @@ module.exports.category_update = async (req, res) => {
         error.categoryDes = 'Please provide category description'
     }
     if (Object.keys(error).length == 0) {
-        const categorySlug = categoryName.trim().split(' ').join('-').toUpperCase();
-        try {
+        const categorySlug = categoryName.trim().split(' ').join('-').toLowerCase();
+        const checkCategory = await categoryModel.findOne({ categorySlug });
+
+        if (checkCategory) {
+            res.status(404).json({
+                errorMessage: {
+                    error: 'Already  has matched  category'
+                }
+            })
+        } else {
+             try {
             await categoryModel.findByIdAndUpdate(categoryId, {
                 categoryName: categoryName.trim(),
                 categorySlug,
@@ -157,6 +164,11 @@ module.exports.category_update = async (req, res) => {
                 }
             })
         }
+
+        }
+
+
+       
     } else {
         res.status(400).json({ errorMessage: error });
     }

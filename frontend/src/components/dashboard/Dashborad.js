@@ -38,7 +38,7 @@ const Dashborad = () => {
             ============================= */}
 
           <Route path="/dashborad/add-tag" component={AddTag} exact />
-          <Route path="/dashborad/all-tag" component={AllTag} exact />
+          <Route path="/dashborad/all-tag/:currentPage?" component={AllTag} exact />
           <Route path="/dashborad/all-user" component={AllUser} exact />
           <Route path="/dashborad/all-sub-admin" component={AllSubAdmin} exact />
           <Route path="/dashborad/comments" component={DashComments} exact />
