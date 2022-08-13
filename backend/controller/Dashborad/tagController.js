@@ -1,4 +1,4 @@
-const tagModel = require('../models/tagModel');
+const tagModel = require('../../models/tagModel');
 module.exports.tag_add = async (req, res) => {
     const { tagName, tagDes } = req.body;
 
@@ -11,7 +11,7 @@ module.exports.tag_add = async (req, res) => {
         error.tagDes = 'Please provide tag description'
     }
     if (Object.keys(error).length == 0) {
-        const tagSlug = tagName.trim().split(' ').join('-');
+        const tagSlug = tagName.trim().split(' ').join('-').toUpperCase();
         try {
             const chaekTag = await tagModel.findOne({ tagSlug });
             if (chaekTag) {

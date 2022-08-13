@@ -1,5 +1,5 @@
 const { category_add, category_get, category_delete, category_edit, category_update } = require('../../controller/Dashborad/categoryController');
-const { tag_add } = require('../../controller/tagController');
+const { tag_add } = require('../../controller/Dashborad/tagController');
 const { admin_middleware } = require('../../middleware/authMiddleware');
 
 const router = require('express').Router();
