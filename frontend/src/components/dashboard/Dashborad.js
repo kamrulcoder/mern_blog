@@ -14,6 +14,7 @@ import AllUser from './AllUser';
 import AllSubAdmin from './AllSubAdmin';
 import DashComments from './DashComments';
 import EditCategory from './EditCategory';
+import EditTag from './EditTag';
 
 const Dashborad = () => {
   return (
@@ -37,11 +38,19 @@ const Dashborad = () => {
            {/* Catagory Route end  
             ============================= */}
 
+          {/* Tag  Route start 
+            ============================= */}
           <Route path="/dashborad/add-tag" component={AddTag} exact />
           <Route path="/dashborad/all-tag/:currentPage?" component={AllTag} exact />
+          <Route path="/dashborad/tag/edit/:tagSlug" component={EditTag} exact />
+          {/* Tag  Route end  
+            ============================= */}
+
           <Route path="/dashborad/all-user" component={AllUser} exact />
           <Route path="/dashborad/all-sub-admin" component={AllSubAdmin} exact />
           <Route path="/dashborad/comments" component={DashComments} exact />
+          
+
 
         </Switch>
       </div>

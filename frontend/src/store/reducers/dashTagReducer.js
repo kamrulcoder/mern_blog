@@ -18,7 +18,7 @@ export const dashTagReducer = (state=tagState,action)=>{
             loader : true
         }
     }
-    if(type === 'TAG_ADD_SUCCESS' || type === 'TAG_DELETE_SUCCESS'){
+    if(type === 'TAG_ADD_SUCCESS' || type === 'TAG_DELETE_SUCCESS' || type === 'TAG_UPDATE_SUCCESS'){
         return {
             ...state,
             loader : false,
@@ -26,7 +26,6 @@ export const dashTagReducer = (state=tagState,action)=>{
             tagError : ''
         }
     }
-
     if(type === 'DASHBORAD_TAG_GET_SUCCESS'){
         return {
             ...state,
@@ -35,22 +34,37 @@ export const dashTagReducer = (state=tagState,action)=>{
             parPage : payload.parPage
         }
     }
-
+    if(type === 'EDIT_TAG_GET_SUCCESS'){
+        return {
+            ...state,
+            editTag :payload.editTag,
+        }
+    }
+    if(type === 'EDIT_REQUEST_SET'){
+        return {
+            ...state,
+            editRequest :true,
+        }
+    }
     if(type === 'TAG_SUCCESS_MESSAGE_CLEAR'){
         return {
             ...state,
             tagSuccessMessage : '',
         }
     }
-
+    if(type === 'EDIT_REQUEST_CLEAR'){
+        return {
+            ...state,
+            editRequest : false,
+        }
+    }
     if(type === 'TAG_ERROR_MESSAGE_CLEAR'){
         return {
             ...state,
             tagError : '',
         }
     }
-
-    if(type === 'TAG_ADD_FAIL' ){
+    if(type === 'TAG_ADD_FAIL' || type === 'TAG_UPDATE_FAIL'){
         return {
             ...state,
             loader : false,
@@ -58,7 +72,5 @@ export const dashTagReducer = (state=tagState,action)=>{
             tagSuccessMessage : ''
         }
     }
-
     return state;
-
 }

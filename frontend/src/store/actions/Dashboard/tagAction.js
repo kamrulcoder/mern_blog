@@ -52,3 +52,39 @@ export const delete_tag = (id)=> async(dispatch)=>{
         console.log(error.response)
     }
 }
+
+export const edit_tag = (categorySlug)=>async(dispatch)=>{
+    try {
+        const response = await axios.get(`/rest-api/edit-tag/${categorySlug}`,{withCredentials:true});
+        dispatch({
+            type : 'EDIT_TAG_GET_SUCCESS',
+            payload : {
+                editTag : response.data.editTag
+            }
+        });
+        dispatch({
+            type : 'EDIT_REQUEST_SET'
+        })
+    } catch (error) {
+        console.log(error.response)
+    }
+}
+
+export const update_tag = (id,data)=>async(dispatch)=>{
+    try {
+        const response = await axios.patch(`/rest-api/update-tag/${id}`,data,{withCredentials:true});
+        dispatch({
+            type : 'TAG_UPDATE_SUCCESS',
+            payload : {
+                successMessage : response.data.successMessage
+            }
+        })
+    } catch (error) {
+        dispatch({
+            type : 'TAG_UPDATE_FAIL',
+            payload : {
+                error : error.response.data.errorMessage
+            }
+        })
+    }
+}

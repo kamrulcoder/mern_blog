@@ -100,3 +100,72 @@ module.exports.tag_delete = async (req, res) => {
         })
     }
 }
+
+
+
+
+module.exports.tag_edit = async (req, res) => {
+    const { tagSlug } = req.params;
+
+    try {
+        const editTag = await tagModel.findOne({ tagSlug });
+
+        res.status(200).json({
+            editTag
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            errorMessage: {
+                error: 'Internal server error'
+            }
+        })
+    }
+}
+
+
+module.exports.tag_update = async (req, res) => {
+
+    const { tagId } = req.params;
+    const { tagName, tagDes } = req.body;
+    const error = {};
+
+    if (!tagName) {
+        error.tagName = 'Please provide tag name';
+    }
+    if (!tagDes) {
+        error.tagDes = 'Please provide tag description'
+    }
+    if (Object.keys(error).length == 0) {
+        const tagSlug = tagName.trim().split(' ').join('-').toLowerCase();
+        const checkCategory = await tagModel.findOne({ tagSlug });
+
+        if (checkCategory) {
+            res.status(404).json({
+                errorMessage: {
+                    error: 'Already  has matched  category'
+                }
+            })
+        } else {
+
+        try {
+            await tagModel.findByIdAndUpdate(tagId, {
+                tagName: tagName.trim(),
+                tagSlug,
+                tagDes
+            })
+            res.status(200).json({
+                successMessage: 'Tag update successfull'
+            })
+        } catch (error) {
+            res.status(500).json({
+                errorMessage: {
+                    error: 'Internal server error'
+                }
+            })
+        }
+      }
+    } else {
+        res.status(400).json({ errorMessage: error });
+    }
+}

@@ -53,6 +53,8 @@ function App() {
             ============================= */}
           <Route path="/dashborad/add-tag" component={Dashborad} exact />
           <Route path="/dashborad/all-tag/:currentPage?" component={Dashborad} exact />
+          <Route path="/dashborad/tag/edit/:tagSlug" component={Dashborad} exact />
+
            {/* Tag  Route end  
             ============================= */}
 
