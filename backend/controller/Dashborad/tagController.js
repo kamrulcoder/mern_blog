@@ -83,3 +83,20 @@ module.exports.tag_get = async (req, res) => {
         }
     }
 }
+
+module.exports.tag_delete = async (req, res) => {
+    const tagId = req.params.tagId;
+
+    try {
+        await tagModel.findByIdAndDelete(tagId);
+        res.status(200).json({
+            successMessage: 'Tag delete success'
+        })
+    } catch (error) {
+        res.status(500).json({
+            errorMessage: {
+                error: 'Internal server error'
+            }
+        })
+    }
+}
