@@ -38,3 +38,17 @@ export const get_all_tag = (page,searchValue) =>async(dispatch)=>{
         console.log(error.response)
     }
 }
+
+export const delete_tag = (id)=> async(dispatch)=>{
+    try {
+        const response = await axios.delete(`/rest-api/delete-tag/${id}`,{withCredentials:true});
+        dispatch({
+            type : 'TAG_DELETE_SUCCESS',
+            payload : {
+                successMessage : response.data.successMessage
+            }
+        })
+    } catch (error) {
+        console.log(error.response)
+    }
+}

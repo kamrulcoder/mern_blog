@@ -8,7 +8,7 @@ import Pagination from '../home/Pagination'
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
-import { get_all_tag } from "../../store/actions/Dashboard/tagAction";
+import { get_all_tag , delete_tag} from "../../store/actions/Dashboard/tagAction";
 
 const AllTag = () => {
 
@@ -60,8 +60,7 @@ const AllTag = () => {
                                 <div className="name">{c.tagName}</div>
                                 <div className="action">
                                     <span><Link to={`/dashborad/tag/edit/${c.tagSlug}`}><MdEdit /></Link></span>
-                                    <span ><MdDelete /></span>
-                                </div>
+                                    <span onClick={()=>dispatch(delete_tag(c._id))}><MdDelete /></span>                                </div>
                             </div>) : "Tag not found..."
                         }
                     </div>

@@ -18,7 +18,7 @@ export const dashTagReducer = (state=tagState,action)=>{
             loader : true
         }
     }
-    if(type === 'TAG_ADD_SUCCESS' ){
+    if(type === 'TAG_ADD_SUCCESS' || type === 'TAG_DELETE_SUCCESS'){
         return {
             ...state,
             loader : false,
