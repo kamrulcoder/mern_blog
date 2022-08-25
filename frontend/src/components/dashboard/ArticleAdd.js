@@ -93,7 +93,8 @@ const ArticleAdd = ({history}) => {
         formData.append('slug', slug);
         formData.append('text', text);
 
-        dispatch(add_articale(formData))
+        // dispatch(add_articale(formData))
+        console.log(formData)
     }
     const config = {
         readonly: false
