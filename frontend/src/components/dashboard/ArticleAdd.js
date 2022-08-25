@@ -84,6 +84,7 @@ const ArticleAdd = ({history}) => {
         e.preventDefault();
         const { title, image, category, tag } = state;
 
+
         const formData = new FormData();
 
         formData.append('title', title);
@@ -93,8 +94,7 @@ const ArticleAdd = ({history}) => {
         formData.append('slug', slug);
         formData.append('text', text);
 
-        // dispatch(add_articale(formData))
-        console.log(formData)
+        dispatch(add_articale(formData))
     }
     const config = {
         readonly: false

@@ -15,8 +15,7 @@ export const get_tag_category = ()=>async(dispatch)=>{
     }
 }
 
-export const add_articale = (data)=>async(dispatch)=>{
-    
+export const add_articale = (data)=>async(dispatch)=>{    
     dispatch({
         type : 'ART_SET_LOADER'
     })
