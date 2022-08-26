@@ -3,14 +3,45 @@ import Helmet from 'react-helmet';
 import { FaRegEye, FaSearch } from "react-icons/fa";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
+import htmlToText from "react-html-parser";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import toast, { Toaster } from "react-hot-toast";
+import { get_all_article } from "../../store/actions/Dashboard/articalAction";
 
 const DashboradArticle = () => {
+    const dispatch = useDispatch();
+    const { allArticle, parPage, articleCount, articleSuccessMessage } = useSelector(state => state.dashboradArtical)
+    const { currentPage } = useParams();
+
+
+    useEffect(() => {
+        dispatch(get_all_article(currentPage ? currentPage.split('-')[1] : 1, ''))
+    }, [currentPage, dispatch])
+
+    useEffect(() => {
+        if (articleSuccessMessage) {
+            toast.success(articleSuccessMessage)
+            dispatch({ type: 'ART_SUCCESS_MESSAGE_CLEAR' })
+            dispatch(get_all_article(currentPage ? currentPage.split('-')[1] : 1, ''))
+        }
+    }, [dispatch, articleSuccessMessage])
 
     return (
         <div className='dashborad-article'>
             <Helmet>
                 <title>All Article</title>
             </Helmet>
+            <Toaster position={'bottom-center'}
+                reverseOrder={false}
+                toastOptions={
+                    {
+                        style: {
+                            fontSize: '15px'
+                        }
+                    }
+                }
+            />
            
             <div className="article-action-pagination">
                 <div className="numof-search-newAdd">
@@ -30,50 +61,24 @@ const DashboradArticle = () => {
                 <div className="height-70vh">
                     <div className="articles">
                         
-                        <div className="article">
-                            <img src={`http://localhost:3000/articalImage/ss.jpg`} alt="" />
-                            <Link to={`/artical/details/`}>article title </Link>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore itaque minima at architecto quas possimus dolore laudantium quaerat, enim iste modi expedita ea facere, a amet ipsum, error autem illum!</p>
-                            <div className="action">
-                                <span>
-                                    <Link to={`/dashborad/article/edit/`}><MdEdit /></Link>
-                                </span>
-                                <span>
-                                    <Link><FaRegEye /></Link>
-                                </span>
-                                <span ><MdDelete /></span>
-                            </div>
-                        </div>
-                        
-                        <div className="article">
-                            <img src={`http://localhost:3000/articalImage/ss.jpg`} alt="" />
-                            <Link to={`/artical/details/`}>article title </Link>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore itaque minima at architecto quas possimus dolore laudantium quaerat, enim iste modi expedita ea facere, a amet ipsum, error autem illum!</p>
-                            <div className="action">
-                                <span>
-                                    <Link to={`/dashborad/article/edit/`}><MdEdit /></Link>
-                                </span>
-                                <span>
-                                    <Link><FaRegEye /></Link>
-                                </span>
-                                <span ><MdDelete /></span>
-                            </div>
-                        </div>
-                        
-                        <div className="article">
-                            <img src={`http://localhost:3000/articalImage/ss.jpg`} alt="" />
-                            <Link to={`/artical/details/`}>article title </Link>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore itaque minima at architecto quas possimus dolore laudantium quaerat, enim iste modi expedita ea facere, a amet ipsum, error autem illum!</p>
-                            <div className="action">
-                                <span>
-                                    <Link to={`/dashborad/article/edit/`}><MdEdit /></Link>
-                                </span>
-                                <span>
-                                    <Link><FaRegEye /></Link>
-                                </span>
-                                <span ><MdDelete /></span>
-                            </div>
-                        </div>
+                    {
+                            allArticle.length > 0 ? allArticle.map((art, index) =>
+                                <div className="article">
+                                    <img src={`http://localhost:3000/articalImage/${art.image}`} alt="" />
+                                    <Link to={`/artical/details/${art.slug}`}>{htmlToText(art.title.slice(0, 30))}</Link>
+                                    <p>{htmlToText(art.articleText.slice(0, 50))}</p>
+                                    <div className="action">
+                                        <span>
+                                            <Link to={`/dashborad/article/edit/${art.slug}`}><MdEdit /></Link>
+                                        </span>
+                                        <span>
+                                            <Link><FaRegEye /></Link>
+                                        </span>
+                                        <span ><MdDelete /></span>
+                                    </div>
+                                </div>
+                            ) : 'Article not found...'
+                        }
                     </div>
                 </div>
 

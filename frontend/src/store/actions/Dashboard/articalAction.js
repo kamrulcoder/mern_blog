@@ -36,3 +36,21 @@ export const add_articale = (data)=>async(dispatch)=>{
         })
     }
 }
+
+
+export const get_all_article = (currentPage,searchValue)=>async(dispatch)=>{
+    try {
+        const response = await axios.get(`http://localhost:5000/rest-api/get-artical?currentPage=${currentPage}&&searchValue=${searchValue}`,{withCredentials:true});
+        dispatch({
+            type : 'DASH_ARTICLE_GET_SUCCESS',
+            payload :{
+                allArticle : response.data.allArticle,
+                articleCount : response.data.articleCount,
+                parPage : response.data.parPage,
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        console.log(error.response)
+    }
+}
