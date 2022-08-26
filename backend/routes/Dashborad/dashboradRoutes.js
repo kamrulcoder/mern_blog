@@ -1,4 +1,4 @@
-const { get_tag_category } = require('../../controller/Dashborad/articalController');
+const { get_tag_category, add_artical } = require('../../controller/Dashborad/articalController');
 const { category_add, category_get, category_delete, category_edit, category_update } = require('../../controller/Dashborad/categoryController');
 const { tag_add, tag_get, tag_delete, tag_update, tag_edit } = require('../../controller/Dashborad/tagController');
 const { admin_middleware } = require('../../middleware/authMiddleware');
@@ -25,6 +25,7 @@ router.patch('/update-tag/:tagId',admin_middleware, tag_update);
 
 // Article route start here ....
 router.get('/get-tag-category',admin_middleware, get_tag_category);
+router.post('/add-artical',admin_middleware, add_artical);
 
 // Article route end  here .... 
 

@@ -166,7 +166,7 @@ const ArticleAdd = ({history}) => {
                     <div className="form-group">
                         <label htmlFor="tag">Tag</label>
                         <select onChange={inputHendle} value={state.tag} className='form-control' name="tag" id="tag">
-                            <option value="sdas">--select article tag--</option>
+                            <option value="">--select article tag--</option>
                             {
                                 allTag.length > 0 ? allTag.map((t, index) => <option value={t.tagSlug}>{t.tagName}</option>) : ''
                             }
