@@ -140,8 +140,10 @@ module.exports.delete_artical = async (req, res) => {
     try {
         const getArticle = await articleModel.findById(articleId);
 
-        const deleteImage = __dirname + `../../../../frontend/public/articalImage/${getArticle.image}`;
+        
 
+         const deleteImage = __dirname + `../../../../frontend/public/articalImage/${getArticle.image}`;
+        
         if (getArticle && getArticle.adminId === adminId || getArticle.role === role) {
             await articleModel.findByIdAndDelete(articleId);
             

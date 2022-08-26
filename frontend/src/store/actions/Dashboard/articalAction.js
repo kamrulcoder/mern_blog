@@ -57,6 +57,7 @@ export const get_all_article = (currentPage,searchValue)=>async(dispatch)=>{
 
 
 export const delete_article = (articleId)=>async(dispatch)=>{
+
     try {
         const response = await axios.delete(`http://localhost:5000/rest-api/delete-artical/${articleId}`,{withCredentials:true})
         dispatch({

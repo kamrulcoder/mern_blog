@@ -7,7 +7,7 @@ import htmlToText from "react-html-parser";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
-import { get_all_article } from "../../store/actions/Dashboard/articalAction";
+import { get_all_article , delete_article } from "../../store/actions/Dashboard/articalAction";
 import Pagination from '../home/Pagination';
 
 const DashboradArticle = () => {
@@ -75,7 +75,7 @@ const DashboradArticle = () => {
                                         <span>
                                             <Link><FaRegEye /></Link>
                                         </span>
-                                        <span ><MdDelete /></span>
+                                        <span onClick={() => dispatch(delete_article(art._id))}><MdDelete /></span>
                                     </div>
                                 </div>
                             ) : 'Article not found...'
