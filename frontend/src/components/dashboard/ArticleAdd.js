@@ -104,11 +104,18 @@ const ArticleAdd = ({history}) => {
     }, [])
 
     useEffect(()=>{
+        if(articleError && articleError.error){
+            toast.error(articleError.error);
+            dispatch({type : 'ART_ERROR_MESSAGE_CLEAR'});
+        }
+       
+
         if(articleSuccessMessage){
+            toast.success(articleSuccessMessage);
             dispatch({type :'ART_SUCCESS_MESSAGE_CLEAR'})
             history.push('/dashborad/all-article');
         }
-    },[articleSuccessMessage])
+    },[articleSuccessMessage, articleError])
     return (
         <div className='add-article'>
             <Toaster position={'bottom-center'}

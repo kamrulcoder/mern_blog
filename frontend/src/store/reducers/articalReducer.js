@@ -50,6 +50,13 @@ export const articalReducer = (state = initState, action) => {
             articleSuccessMessage: ''
         }
     }
+    
+    if (type === 'ART_ERROR_MESSAGE_CLEAR') {
+        return {
+            ...state,
+            articleError: ''
+        }
+    }
     if (type === 'DASH_ARTICLE_GET_SUCCESS') {
         return {
             ...state,
