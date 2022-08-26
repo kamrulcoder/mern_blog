@@ -82,3 +82,52 @@ module.exports.add_artical = (req, res) => {
     }
   });
 };
+
+
+
+module.exports.get_artical = async (req, res) => {
+    const { role, adminId } = req;
+    const { currentPage, searchValue } = req.query;
+
+    const parPage = 2;
+
+    const skipPage = parseInt(currentPage - 1) * parPage;
+
+    let articals = [];
+
+    try {
+        let articleCount = 0;
+
+        if (searchValue) {
+            if (role === 'admin') {
+                articleCount = await articleModel.find({}).countDocuments();
+                articals = await articleModel.find({}).skip(skipPage).limit(parPage).sort({ createAt: -1 });
+                articals = articals.filter(ar => ar.title.toUpperCase().indexOf(searchValue.toUpperCase()) > -1);
+            } else {
+                articleCount = await articleModel.find({ adminId }).countDocuments();
+                articals = await articleModel.find({ adminId }).skip(skipPage).limit(parPage).sort({ createAt: -1 });
+                articals = articals.filter(ar => ar.title.toUpperCase().indexOf(searchValue.toUpperCase()) > -1);
+            }
+        } else {
+            if (role === 'admin') {
+                articleCount = await articleModel.find({}).countDocuments();
+                articals = await articleModel.find({}).skip(skipPage).limit(parPage).sort({ createAt: -1 });
+            } else {
+                articleCount = await articleModel.find({ adminId }).countDocuments();
+                articals = await articleModel.find({ adminId }).skip(skipPage).limit(parPage).sort({ createAt: -1 });
+            }
+        }
+
+        res.status(200).json({
+            allArticle: articals,
+            parPage,
+            articleCount
+        })
+    } catch (error) {
+        res.status(500).json({
+            errorMessage: {
+                error: 'Internal server error'
+            }
+        })
+    }
+}
