@@ -54,3 +54,6 @@ export const get_all_article = (currentPage,searchValue)=>async(dispatch)=>{
         console.log(error.response)
     }
 }
+
+
+

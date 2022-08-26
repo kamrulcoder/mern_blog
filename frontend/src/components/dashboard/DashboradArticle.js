@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import { get_all_article } from "../../store/actions/Dashboard/articalAction";
+import Pagination from '../home/Pagination';
 
 const DashboradArticle = () => {
     const dispatch = useDispatch();
@@ -81,7 +82,14 @@ const DashboradArticle = () => {
                         }
                     </div>
                 </div>
-
+                {
+                    articleCount === 0 || articleCount < parPage ? "" : <Pagination
+                        pageNumber={currentPage ? currentPage.split('-')[1] : 1}
+                        parPage={parPage}
+                        itemCount={articleCount}
+                        path='/dashborad/all-article'
+                    />
+                }
             </div>
         </div>
     )

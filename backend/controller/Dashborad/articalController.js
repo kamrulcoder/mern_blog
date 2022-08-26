@@ -131,3 +131,38 @@ module.exports.get_artical = async (req, res) => {
         })
     }
 }
+
+
+
+module.exports.delete_artical = async (req, res) => {
+    const { articleId } = req.params;
+    const { adminId, role } = req;
+    try {
+        const getArticle = await articleModel.findById(articleId);
+
+        const deleteImage = __dirname + `../../../../frontend/public/articalImage/${getArticle.image}`;
+
+        if (getArticle && getArticle.adminId === adminId || getArticle.role === role) {
+            await articleModel.findByIdAndDelete(articleId);
+            
+            fs.unlinkSync(deleteImage);
+
+            res.status(201).json({
+                successMessage: 'Article delete successfull'
+            })
+
+        } else {
+            res.status(404).json({
+                errorMessage: {
+                    error: 'You can not edit this article'
+                }
+            })
+        }
+    } catch (error) {
+        res.status(500).json({
+            errorMessage: {
+                error: 'Internal server error'
+            }
+        })
+    }
+}
