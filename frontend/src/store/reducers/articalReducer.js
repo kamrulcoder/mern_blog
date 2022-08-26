@@ -28,7 +28,7 @@ export const articalReducer = (state = initState, action) => {
             loader: true
         }
     }
-    if (type === 'ARTICLE_ADD_SUCCESS') {
+    if (type === 'ARTICLE_ADD_SUCCESS' || type === 'ARTICLE_DELETE_SUCCESS') {
         return {
             ...state,
             loader: false,
